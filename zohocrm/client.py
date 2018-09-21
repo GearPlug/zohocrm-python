@@ -45,7 +45,7 @@ class Client(object):
         :param code:
         :return:
         """
-        params = {'code': self.code, 'client_id': self.client_id, 'client_secret': self.client_secret,
+        params = {'code': code, 'client_id': self.client_id, 'client_secret': self.client_secret,
                   'redirect_uri': self.redirect_uri, 'grant_type': 'authorization_code'}
         url = ZOHOCRM_REQUEST_TOKEN_URL + '?' + urlencode(params)
         return self._post(url)
