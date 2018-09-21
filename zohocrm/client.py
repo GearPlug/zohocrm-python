@@ -211,8 +211,6 @@ class Client(object):
         if status_code == 204:
             return None
         message = None
-        print(r)
-        print(r.__dict__)
         try:
             if 'errorMessages' in r:
                 message = r['errorMessages']
