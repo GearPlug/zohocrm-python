@@ -33,8 +33,8 @@ class Client(object):
 
         :return:
         """
-        params = {'code': ','.join(self.scope), 'client_id': self.client_id, 'access_type': 'offline',
-                  'redirect_uri': self.redirect_uri}
+        params = {'scope': ','.join(self.scope), 'client_id': self.client_id, 'access_type': 'offline',
+                  'redirect_uri': self.redirect_uri, 'response_type': 'code'}
         url = ZOHOCRM_AUTHORIZE_URL + '?' + urlencode(params)
         print(url)
         return url
