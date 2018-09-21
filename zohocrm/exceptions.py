@@ -32,11 +32,3 @@ class MandatoryFieldNotFoundError(BaseError):
 
 class InvalidDataTypeError(BaseError):
     pass
-
-
-# class InvalidDataError(BaseError):
-#     pass
-#
-#
-# class InvalidDataError(BaseError):
-#     pass
