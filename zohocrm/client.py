@@ -107,17 +107,26 @@ class Client(object):
         :param notify_url:
         :return:
         """
-        print(2019999)
+        print(2010)
         endpoint = 'actions/watch'
+        print(2011, endpoint)
         event = ["{0}.create".format(module)]
+        print(2012, event)
         data = [{
             'notify_url': notify_url,
             'channel_id': gearplug_webhook_id,
             'events': event,
         }]
+        print(2013, data)
         data = {'watch': data}
+        print(2014, data)
         url = BASE_URL + endpoint
-        response = self._post(url, data=data)
+        print(2015, url)
+        try:
+            response = self._post(url, data=data)
+            print(2016, response)
+        except Exception as e:
+            print(2017, e)
         print('RESPONSE WEBHOOK CREATE IN LIB: ', response)
         if response['watch'][-1]['code'] == "SUCCESS":
             return response['watch'][-1]['details']
