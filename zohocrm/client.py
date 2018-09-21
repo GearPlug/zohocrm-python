@@ -155,6 +155,19 @@ class Client(object):
             all_data.append(response['data'])
         return all_data
 
+    def get_specific_record(self, module, id):
+        """
+
+        :return:
+        """
+        endpoint = '{0}/{1}'.format(module, id)
+        url = BASE_URL + str(endpoint)
+        response = self._get(url)
+        if response and 'data' in response and len(response['data']) > 0 and response['data']['id'] == id:
+            return response['data']
+        else:
+            return False
+
     def insert_record(self, module_name, data):
         """
 
@@ -199,8 +212,6 @@ class Client(object):
         return self._parse(response, method='delete')
 
     def _parse(self, response, method=None):
-        # TODO obtener metodo de request
-        # TODO diferenciar entre los errores de _post y _get
         status_code = response.status_code
         if 'application/json' in response.headers['Content-Type']:
             r = response.json()
