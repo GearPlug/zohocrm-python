@@ -117,6 +117,7 @@ class Client(object):
         data = {'watch': data}
         url = BASE_URL + endpoint
         response = self._post(url, data=data)
+        print('RESPONSE WEBHOOK CREATE IN LIB: ', response)
         if response['watch'][-1]['code'] == "SUCCESS":
             return response['watch'][-1]['details']
         else:
