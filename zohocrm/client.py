@@ -224,6 +224,8 @@ class Client(object):
         print(response.headers)
         print('RESPONSE TEXT *******************************')
         print(response.text)
+        print('RESPONSE JSON *******************************')
+        print(response.json)
         status_code = response.status_code
         if 'application/json' in response.headers['Content-Type']:
             print('es json')
