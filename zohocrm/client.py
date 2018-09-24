@@ -37,7 +37,6 @@ class Client(object):
         params = {'scope': ','.join(self.scope), 'client_id': self.client_id, 'access_type': 'offline',
                   'redirect_uri': self.redirect_uri, 'response_type': 'code'}
         url = ZOHOCRM_AUTHORIZE_URL + '?' + urlencode(params)
-        print(url)
         return url
 
     def exchange_code(self, code):
@@ -164,8 +163,6 @@ class Client(object):
 
         :return:
         """
-        print('MODULE: ', module)
-        print('ID: ', id)
         endpoint = '{0}/{1}'.format(module, id)
         url = BASE_URL + str(endpoint)
         response = self._get(url)
