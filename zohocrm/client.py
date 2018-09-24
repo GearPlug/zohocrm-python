@@ -220,8 +220,10 @@ class Client(object):
     def _parse(self, response, method=None):
         # print('RESPONSE IN ZOHOCRM LIB: ', response.text)
         # print('TYPE -- RESPONSE IN ZOHOCRM LIB: ', type(response.text))
-        print('*******************************')
+        print('RESPONSE HEADERS *******************************')
         print(response.headers)
+        print('RESPONSE TEXT *******************************')
+        print(response.text)
         status_code = response.status_code
         if 'application/json' in response.headers['Content-Type']:
             print('es json')
