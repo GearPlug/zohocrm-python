@@ -164,6 +164,8 @@ class Client(object):
 
         :return:
         """
+        print('MODULE: ', module)
+        print('ID: ', id)
         endpoint = '{0}/{1}'.format(module, id)
         url = BASE_URL + str(endpoint)
         response = self._get(url)
