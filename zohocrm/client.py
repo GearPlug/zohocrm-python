@@ -168,6 +168,7 @@ class Client(object):
         print('1 --> ', url)
         response = self._get(url)
         print('2 --> ', response)
+        print(type(response))
         if response and 'data' in response and len(response['data']) > 0 and response['data']['id'] == id:
             return response['data']
         else:
@@ -217,7 +218,7 @@ class Client(object):
         return self._parse(response, method='delete')
 
     def _parse(self, response, method=None):
-        print('RESPONSE IN ZOHOCRM LIB: ', response)
+        print('RESPONSE IN ZOHOCRM LIB: ', response.text)
         status_code = response.status_code
         if 'application/json' in response.headers['Content-Type']:
             r = response.json()
