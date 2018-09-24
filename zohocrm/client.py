@@ -166,10 +166,7 @@ class Client(object):
         """
         endpoint = '{0}/{1}'.format(module, id)
         url = BASE_URL + str(endpoint)
-        print('1 --> ', url)
         response = self._get(url)
-        print('2 --> ', response)
-        print(type(response))
         if response and 'data' in response and len(response['data']) > 0 and response['data'][0]['id'] == id:
             return response['data']
         else:
@@ -219,28 +216,8 @@ class Client(object):
         return self._parse(response, method='delete')
 
     def _parse(self, response, method=None):
-        # print('RESPONSE IN ZOHOCRM LIB: ', response.text)
-        # print('TYPE -- RESPONSE IN ZOHOCRM LIB: ', type(response.text))
-        print('RESPONSE HEADERS *******************************')
-        print(response.headers)
-        print('RESPONSE TEXT *******************************')
-        print(response.text)
-        print('RESPONSE loads *******************************')
-        try:
-            a = json.loads(response)
-            print(a)
-        except Exception as e:
-            print(e)
-            pass
-        print('RESPONSE crudo *******************************')
-        try:
-            print(response)
-        except Exception as e:
-            print(e)
-            pass
         status_code = response.status_code
         if 'application/json' in response.headers['Content-Type']:
-            print('es json')
             r = response.json()
         else:
             r = response.text
