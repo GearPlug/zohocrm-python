@@ -69,12 +69,15 @@ class Client(object):
         :param token:
         :return:
         """
+        print('token: ', token)
         if isinstance(token, dict):
             self.access_token = token['access_token']
             if 'refresh_token' in token:
                 self._refresh_token = token['refresh_token']
         else:
             self.access_token = token
+        print('access token: ', self.access_token)
+        print('refresh token: ', self._refresh_token)
 
     def get_module_list(self):
         """
