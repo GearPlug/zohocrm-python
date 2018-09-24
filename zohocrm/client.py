@@ -226,8 +226,12 @@ class Client(object):
         print('RESPONSE TEXT *******************************')
         print(response.text)
         print('RESPONSE dumps *******************************')
-        a = json.dumps(response)
-        print(a)
+        try:
+            a = json.dumps(response)
+            print(a)
+        except Exception as e:
+            print(e)
+            pass
         status_code = response.status_code
         if 'application/json' in response.headers['Content-Type']:
             print('es json')
