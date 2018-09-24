@@ -55,7 +55,7 @@ class Client(object):
 
         :return:
         """
-        params = {'refresh_token': self.refresh_token, 'client_id': self.client_id, 'client_secret': self.client_secret,
+        params = {'refresh_token': self._refresh_token, 'client_id': self.client_id, 'client_secret': self.client_secret,
                   'grant_type': 'refresh_token'}
         url = ZOHOCRM_REFRESH_TOKEN_URL + '?' + urlencode(params)
         print(url)
