@@ -225,10 +225,16 @@ class Client(object):
         print(response.headers)
         print('RESPONSE TEXT *******************************')
         print(response.text)
-        print('RESPONSE dumps *******************************')
+        print('RESPONSE loads *******************************')
         try:
-            a = json.dumps(response)
+            a = json.loads(response)
             print(a)
+        except Exception as e:
+            print(e)
+            pass
+        print('RESPONSE crudo *******************************')
+        try:
+            print(response)
         except Exception as e:
             print(e)
             pass
