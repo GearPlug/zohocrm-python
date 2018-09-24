@@ -169,7 +169,7 @@ class Client(object):
         response = self._get(url)
         print('2 --> ', response)
         print(type(response))
-        if response and 'data' in response and len(response['data']) > 0 and response[0]['data']['id'] == id:
+        if response and 'data' in response and len(response['data']) > 0 and response['data'][0]['id'] == id:
             return response['data']
         else:
             return False
