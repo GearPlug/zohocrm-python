@@ -218,10 +218,13 @@ class Client(object):
         return self._parse(response, method='delete')
 
     def _parse(self, response, method=None):
-        print('RESPONSE IN ZOHOCRM LIB: ', response.text)
-        print('TYPE -- RESPONSE IN ZOHOCRM LIB: ', type(response.text))
+        # print('RESPONSE IN ZOHOCRM LIB: ', response.text)
+        # print('TYPE -- RESPONSE IN ZOHOCRM LIB: ', type(response.text))
+        print('*******************************')
+        print(response.headers)
         status_code = response.status_code
         if 'application/json' in response.headers['Content-Type']:
+            print('es json')
             r = response.json()
         else:
             r = response.text
