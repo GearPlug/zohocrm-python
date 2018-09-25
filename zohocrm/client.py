@@ -2,7 +2,6 @@ import json
 import requests
 from urllib.parse import urlencode
 
-import zohocrm.fields
 from zohocrm.exceptions import UnknownError, InvalidModuleError, NoPermissionError, MandatoryKeyNotFoundError, \
     InvalidDataError, MandatoryFieldNotFoundError
 
@@ -103,9 +102,24 @@ class Client(object):
         url = BASE_URL + "settings/fields" + "?" + urlencode(params)
         response = self._get(url)
         if response:
-            return [{'id': i['id'], 'label': i['field_label'], 'api_name': i['api_name']} for i in response['fields']]
+            result = [
+                {
+                    'id': i['id'],
+                    'label': i['field_label'],
+                    'api_name': i['api_name'],
+                    'max_length': i['length'],
+                    'read_only': i['read_only'],
+                    'data_type': i['data_type'],
+                    'currency': i['currency']
+                } for i in response['fields']]
+            if len(response['fields']['pick_list_values']) > 0:
+                result['pick_list_values'] = [i['display_value'] for i in response['fields']['pick_list_values']]
+            if len(response['fields']['lookup']) > 0:
+                result['pick_list_values'] = [
+                    {'api_name': i['api_name'], 'id': i['id']} for i in response['fields']['lookup']]
         else:
             return None
+        return result
 
     def create_webhook(self, module, gearplug_webhook_id, notify_url):
         """
