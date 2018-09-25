@@ -13,11 +13,10 @@ ZOHOCRM_REFRESH_TOKEN_URL = "https://accounts.zoho.com/oauth/v2/token"
 READ_MODULE_LIST = ['leads', 'accounts', 'contacts', 'deals', 'campaigns', 'tasks', 'cases', 'events', 'calls',
                     'solutions', 'products', 'vendors', 'pricebooks', 'quotes', 'salesorders', 'purchaseorders',
                     'invoices', 'custom', 'notes', 'approvals', 'dashboards', 'search', 'activities']
-# module purchaseorders is temporarily disable for writing (creating purchase order),
-# this due to the complexity of the module
-WRITE_MODULE_LIST = ['leads', ' accounts', ' contacts', ' deals', ' campaigns', ' tasks', ' cases', ' events', ' calls',
-                     ' solutions', ' products', ' vendors', ' pricebooks', ' quotes', ' salesorders', ' purchaseorders',
-                     ' invoices', ' custom', ' notes']
+# module purchaseorders, 'invoices', salesorders and quotes are temporarily disable for writing this
+# due to the complexity of the module
+WRITE_MODULE_LIST = ['leads', 'accounts', 'contacts', 'deals', 'campaigns', 'tasks', 'cases', 'events', 'calls',
+                     'solutions', 'products', 'vendors', 'pricebooks', 'purchaseorders', 'custom', 'notes']
 
 
 class Client(object):
@@ -184,6 +183,19 @@ class Client(object):
         """
         if module in WRITE_MODULE_LIST:
             return getattr(zohocrm.fields, module)()
+        else:
+            return False
+
+    def get_all_active_users(self):
+        """
+
+        :return: all active users
+        """
+        endpoint = 'users?type=ActiveUsers'
+        url = BASE_URL + str(endpoint)
+        response = self._get(url)
+        if response and 'users' in response and isinstance(response['users'], list) and len(response['users']) > 0:
+            return response['users']
         else:
             return False
 
