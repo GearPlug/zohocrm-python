@@ -93,9 +93,13 @@ class Client(object):
         :param module:
         :return:
         """
+        print(1)
         params = {'module': module}
+        print(2, params)
         url = BASE_URL + "settings/fields" + "?" + urlencode(params)
+        print(3, url)
         response = self._get(url)
+        print(4, response)
         if response:
             result = [
                 {
@@ -112,6 +116,7 @@ class Client(object):
                 result['pick_list_values'] = [i['display_value'] for i in response['fields']['pick_list_values']]
         else:
             return None
+        print(5, result)
         return result
 
     def create_webhook(self, module, gearplug_webhook_id, notify_url):
