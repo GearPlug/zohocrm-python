@@ -59,9 +59,7 @@ class Client(object):
         params = {'refresh_token': self._refresh_token, 'client_id': self.client_id,
                   'client_secret': self.client_secret, 'grant_type': 'refresh_token'}
         url = ZOHOCRM_REFRESH_TOKEN_URL + '?' + urlencode(params)
-        print(url)
         response = self._post(url)
-        print(response)
         return response
 
     def set_access_token(self, token):
@@ -257,7 +255,6 @@ class Client(object):
         return self._parse(response, method='delete')
 
     def _parse(self, response, method=None):
-        print(response.text)
         status_code = response.status_code
         if 'application/json' in response.headers['Content-Type']:
             r = response.json()
