@@ -1,7 +1,7 @@
-import requests
+import zohocrm.fields
 import json
+import requests
 from urllib.parse import urlencode
-import fields
 
 from zohocrm.exceptions import UnknownError, InvalidModuleError, NoPermissionError, MandatoryKeyNotFoundError, \
     InvalidDataError, MandatoryFieldNotFoundError
@@ -56,8 +56,8 @@ class Client(object):
 
         :return:
         """
-        params = {'refresh_token': self._refresh_token, 'client_id': self.client_id, 'client_secret': self.client_secret,
-                  'grant_type': 'refresh_token'}
+        params = {'refresh_token': self._refresh_token, 'client_id': self.client_id,
+                  'client_secret': self.client_secret, 'grant_type': 'refresh_token'}
         url = ZOHOCRM_REFRESH_TOKEN_URL + '?' + urlencode(params)
         print(url)
         response = self._post(url)
@@ -116,11 +116,7 @@ class Client(object):
         """
         endpoint = 'actions/watch'
         event = ["{0}.create".format(module)]
-        data = [{
-            'notify_url': notify_url,
-            'channel_id': gearplug_webhook_id,
-            'events': event,
-        }]
+        data = [{'notify_url': notify_url, 'channel_id': gearplug_webhook_id, 'events': event, }]
         data = {'watch': data}
         url = BASE_URL + endpoint
         try:
