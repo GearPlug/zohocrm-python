@@ -110,13 +110,11 @@ class Client(object):
                     'max_length': i['length'],
                     'read_only': i['read_only'],
                     'data_type': i['data_type'],
-                    'currency': i['currency']
+                    'currency': i['currency'],
+                    'lookup': i['lookup']
                 } for i in response['fields']]
             if len(response['fields']['pick_list_values']) > 0:
                 result['pick_list_values'] = [i['display_value'] for i in response['fields']['pick_list_values']]
-            if len(response['fields']['lookup']) > 0:
-                result['pick_list_values'] = [
-                    {'api_name': i['api_name'], 'id': i['id']} for i in response['fields']['lookup']]
         else:
             return None
         return result
@@ -186,17 +184,6 @@ class Client(object):
         response = self._get(url)
         if response and 'data' in response and len(response['data']) > 0 and response['data'][0]['id'] == id:
             return response['data']
-        else:
-            return False
-
-    def get_modules_fields(self, module):
-        """
-
-        :param module: modules to get fields for
-        :return: dict of dicts  of fields for given module
-        """
-        if module in WRITE_MODULE_LIST:
-            return getattr(zohocrm.fields, module)()
         else:
             return False
 
