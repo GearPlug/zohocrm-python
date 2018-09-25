@@ -1,6 +1,7 @@
 import requests
 import json
 from urllib.parse import urlencode
+import fields
 
 from zohocrm.exceptions import UnknownError, InvalidModuleError, NoPermissionError, MandatoryKeyNotFoundError, \
     InvalidDataError, MandatoryFieldNotFoundError
@@ -174,6 +175,17 @@ class Client(object):
         response = self._get(url)
         if response and 'data' in response and len(response['data']) > 0 and response['data'][0]['id'] == id:
             return response['data']
+        else:
+            return False
+
+    def get_modules_fields(self, module):
+        """
+
+        :param module: modules to get fields for
+        :return: dict of dicts  of fields for given module
+        """
+        if module in WRITE_MODULE_LIST:
+            return getattr(fields, module)()
         else:
             return False
 
