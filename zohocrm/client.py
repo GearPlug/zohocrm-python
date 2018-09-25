@@ -97,19 +97,23 @@ class Client(object):
         url = BASE_URL + "settings/fields" + "?" + urlencode(params)
         response = self._get(url)
         print(response)
+        print(type(response))
         if response:
-            result = [
-                {
-                    'id': i['id'],
-                    'label': i['field_label'],
-                    'api_name': i['api_name'],
-                    'max_length': i['length'],
-                    'read_only': i['read_only'],
-                    'data_type': i['data_type'],
-                    'currency': i['currency'],
-                    'lookup': i['lookup'],
-                    'pick_list_values': i['pick_list_values']
-                } for i in response['fields']]
+            try:
+                result = [
+                    {
+                        'id': i['id'],
+                        'label': i['field_label'],
+                        'api_name': i['api_name'],
+                        'max_length': i['length'],
+                        'read_only': i['read_only'],
+                        'data_type': i['data_type'],
+                        'currency': i['currency'],
+                        'lookup': i['lookup'],
+                        'pick_list_values': i['pick_list_values']
+                    } for i in response['fields']]
+            except Exception as e:
+                print(e)
         else:
             return None
         return result
