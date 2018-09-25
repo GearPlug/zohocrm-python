@@ -1,8 +1,8 @@
-import zohocrm.fields
 import json
 import requests
 from urllib.parse import urlencode
 
+import zohocrm.fields
 from zohocrm.exceptions import UnknownError, InvalidModuleError, NoPermissionError, MandatoryKeyNotFoundError, \
     InvalidDataError, MandatoryFieldNotFoundError
 
@@ -13,6 +13,8 @@ ZOHOCRM_REFRESH_TOKEN_URL = "https://accounts.zoho.com/oauth/v2/token"
 READ_MODULE_LIST = ['leads', 'accounts', 'contacts', 'deals', 'campaigns', 'tasks', 'cases', 'events', 'calls',
                     'solutions', 'products', 'vendors', 'pricebooks', 'quotes', 'salesorders', 'purchaseorders',
                     'invoices', 'custom', 'notes', 'approvals', 'dashboards', 'search', 'activities']
+# module purchaseorders is temporarily disable for writing (creating purchase order),
+# this due to the complexity of the module
 WRITE_MODULE_LIST = ['leads', ' accounts', ' contacts', ' deals', ' campaigns', ' tasks', ' cases', ' events', ' calls',
                      ' solutions', ' products', ' vendors', ' pricebooks', ' quotes', ' salesorders', ' purchaseorders',
                      ' invoices', ' custom', ' notes']
@@ -181,7 +183,7 @@ class Client(object):
         :return: dict of dicts  of fields for given module
         """
         if module in WRITE_MODULE_LIST:
-            return getattr(fields, module)()
+            return getattr(zohocrm.fields, module)()
         else:
             return False
 
