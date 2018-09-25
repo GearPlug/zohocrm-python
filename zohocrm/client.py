@@ -199,6 +199,19 @@ class Client(object):
         else:
             return False
 
+    def get_all_organizations(self):
+        """
+
+        :return: all oganizations
+        """
+        endpoint = 'org'
+        url = BASE_URL + str(endpoint)
+        response = self._get(url)
+        if response and 'org' in response and isinstance(response['org'], list) and len(response['users']) > 0:
+            return response['org']
+        else:
+            return False
+
     def insert_record(self, module_name, data):
         """
 
