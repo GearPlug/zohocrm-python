@@ -221,18 +221,24 @@ class Client(object):
         """
         print(666, data)
         if module_name not in WRITE_MODULE_LIST:
+            print(1)
             return None
         if not isinstance(data, list):
+            print(2)
             return None
         if len(data) <= 0:
+            print(3)
             return None
         if not isinstance(data[-1], dict):
+            print(4)
             return None
         url = BASE_URL + str(module_name)
+        print(5, url)
         try:
+            print(6)
             response = self._post(url, data={'data': data})
         except Exception as e:
-            print(e)
+            print(7, e)
             return False
         return response
 
