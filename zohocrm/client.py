@@ -220,7 +220,7 @@ class Client(object):
         :return:
         """
         print(666, data)
-        if module_name not in WRITE_MODULE_LIST:
+        if module_name.lower() not in WRITE_MODULE_LIST:
             print(1)
             return None
         if not isinstance(data, list):
