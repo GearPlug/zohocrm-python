@@ -223,7 +223,7 @@ class Client(object):
             return None
         url = BASE_URL + str(module_name)
         formatted_data = {'data': []}
-        formatted_data['data'].append(data)
+        formatted_data['data'].append(dict(data))
         print('*********************')
         print('DATA: ', data)
         return self._post(url, data=formatted_data)
