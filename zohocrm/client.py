@@ -223,15 +223,15 @@ class Client(object):
         if module_name.lower() not in WRITE_MODULE_LIST:
             print(1)
             return None
-        if not isinstance(data, list):
-            print(2)
-            return None
-        if len(data) <= 0:
-            print(3)
-            return None
-        if not isinstance(data[-1], dict):
-            print(4)
-            return None
+        # if not isinstance(data, list):
+        #     print(2)
+        #     return None
+        # if len(data) <= 0:
+        #     print(3)
+        #     return None
+        # if not isinstance(data[-1], dict):
+        #     print(4)
+        #     return None
         url = BASE_URL + str(module_name)
         print(5, url)
         try:
