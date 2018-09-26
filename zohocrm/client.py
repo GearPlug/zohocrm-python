@@ -225,7 +225,7 @@ class Client(object):
         formatted_data = {'data': []}
         formatted_data['data'].append(dict(data))
         print('*********************')
-        print('DATA: ', data)
+        print('DATA: ', formatted_data)
         return self._post(url, data=formatted_data)
 
     def _get(self, endpoint, params=None):
