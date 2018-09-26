@@ -96,8 +96,6 @@ class Client(object):
         params = {'module': module}
         url = BASE_URL + "settings/fields" + "?" + urlencode(params)
         response = self._get(url)
-        print('** get_fields_list **')
-        print(response)
         if response:
             try:
                 result = [
