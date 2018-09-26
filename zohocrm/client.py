@@ -258,6 +258,8 @@ class Client(object):
         return self._parse(response, method='delete')
 
     def _parse(self, response, method=None):
+        print('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
+        print(response)
         status_code = response.status_code
         if 'application/json' in response.headers['Content-Type']:
             r = response.json()
