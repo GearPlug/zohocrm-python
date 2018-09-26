@@ -223,25 +223,11 @@ class Client(object):
         if module_name.lower() not in WRITE_MODULE_LIST:
             print(1)
             return None
-        # if not isinstance(data, list):
-        #     print(2)
-        #     return None
-        # if len(data) <= 0:
-        #     print(3)
-        #     return None
-        # if not isinstance(data[-1], dict):
-        #     print(4)
-        #     return None
         url = BASE_URL + str(module_name)
-        print(5, url)
         data = dict(data)
-        try:
-            print(6)
-            response = self._post(url, data={'data': data})
-        except Exception as e:
-            print(7, e)
-            return False
-        return response
+        print('*********************')
+        print('DATA: ', data)
+        return self._post(url, data={'data': data})
 
     def _get(self, endpoint, params=None):
         headers = {'Authorization': 'Zoho-oauthtoken {0}'.format(self.access_token), }
