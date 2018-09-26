@@ -228,8 +228,6 @@ class Client(object):
                 data[k] = True
         formatted_data = {'data': []}
         formatted_data['data'].append(data)
-        print('*********************')
-        print('DATA: ', formatted_data)
         return self._post(url, data=formatted_data)
 
     def _get(self, endpoint, params=None):
@@ -258,8 +256,6 @@ class Client(object):
         return self._parse(response, method='delete')
 
     def _parse(self, response, method=None):
-        print('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
-        print(response.text)
         status_code = response.status_code
         if 'application/json' in response.headers['Content-Type']:
             r = response.json()
