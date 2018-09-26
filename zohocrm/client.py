@@ -222,8 +222,14 @@ class Client(object):
         if module_name.lower() not in WRITE_MODULE_LIST:
             return None
         url = BASE_URL + str(module_name)
+        data = dict(data)
+        for k, v in data.items():
+            if v == 'False':
+                data[k] = False
+            if v == 'True':
+                data[k] = True
         formatted_data = {'data': []}
-        formatted_data['data'].append(dict(data))
+        formatted_data['data'].append(data)
         print('*********************')
         print('DATA: ', formatted_data)
         return self._post(url, data=formatted_data)
