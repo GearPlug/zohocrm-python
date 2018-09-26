@@ -219,15 +219,14 @@ class Client(object):
         :param data:
         :return:
         """
-        print(666, data)
         if module_name.lower() not in WRITE_MODULE_LIST:
-            print(1)
             return None
         url = BASE_URL + str(module_name)
-        data = json.dumps(dict(data))
+        formatted_data = {'data': []}
+        formatted_data['data'].append(data)
         print('*********************')
         print('DATA: ', data)
-        return self._post(url, data=data)
+        return self._post(url, data=formatted_data)
 
     def _get(self, endpoint, params=None):
         headers = {'Authorization': 'Zoho-oauthtoken {0}'.format(self.access_token), }
