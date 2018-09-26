@@ -224,7 +224,7 @@ class Client(object):
             print(1)
             return None
         url = BASE_URL + str(module_name)
-        data = json.loads(data)
+        data = json.dumps(dict(data))
         print('*********************')
         print('DATA: ', data)
         return self._post(url, data=data)
