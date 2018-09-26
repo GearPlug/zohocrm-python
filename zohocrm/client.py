@@ -234,6 +234,7 @@ class Client(object):
         #     return None
         url = BASE_URL + str(module_name)
         print(5, url)
+        data = dict(data)
         try:
             print(6)
             response = self._post(url, data={'data': data})
