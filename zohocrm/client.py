@@ -224,10 +224,10 @@ class Client(object):
             print(1)
             return None
         url = BASE_URL + str(module_name)
-        data = dict(data)
+        data = json.dumps(data)
         print('*********************')
         print('DATA: ', data)
-        return self._post(url, data={'data': data})
+        return self._post(url, data=data)
 
     def _get(self, endpoint, params=None):
         headers = {'Authorization': 'Zoho-oauthtoken {0}'.format(self.access_token), }
