@@ -20,12 +20,12 @@ WRITE_MODULE_LIST = ['leads', 'accounts', 'contacts', 'deals', 'campaigns', 'tas
 
 class Client(object):
 
-    def __init__(self, client_id, client_secret, redirect_uri, scope, access_type):
+    def __init__(self, client_id, client_secret, redirect_uri, scope, access_type, refresh_token):
         self.code = None
         self.scope = scope
         self.access_type = access_type
         self.client_id = client_id
-        self._refresh_token = None
+        self._refresh_token = refresh_token
         self.redirect_uri = redirect_uri
         self.client_secret = client_secret
         self.access_token = None
