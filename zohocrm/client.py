@@ -267,12 +267,14 @@ class Client(object):
             return None
         message = None
         try:
-            if 'errorMessages' in r:
-                message = r['errorMessages']
+            if 'message' in r:
+                message = r['message']
         except Exception:
             message = 'No error message.'
         if status_code == 400:
             raise InvalidModuleError(message)
+        if status_code == 401:
+            raise NoPermissionError(status_code)
         if status_code == 201:
             raise MandatoryFieldNotFoundError(message)
         elif status_code == 202:
