@@ -10,12 +10,13 @@ ZOHOCRM_AUTHORIZE_URL = 'https://accounts.zoho.com/oauth/v2/auth'
 ZOHOCRM_REQUEST_TOKEN_URL = 'https://accounts.zoho.com/oauth/v2/token'
 ZOHOCRM_REFRESH_TOKEN_URL = "https://accounts.zoho.com/oauth/v2/token"
 READ_MODULE_LIST = ['leads', 'accounts', 'contacts', 'deals', 'campaigns', 'tasks', 'cases', 'events', 'calls',
-                    'solutions', 'products', 'vendors', 'pricebooks', 'quotes', 'salesorders', 'purchaseorders',
-                    'invoices', 'custom', 'notes', 'approvals', 'dashboards', 'search', 'activities']
+                    'solutions', 'products', 'vendors', 'price_books', 'quotes', 'sales_orders', 'purchase_orders',
+                    'invoices', 'custom', 'notes', 'approvals', 'dashboards', 'search', 'activities', 'attachments']
 # module purchaseorders, 'invoices', salesorders and quotes are temporarily disable for writing this
 # due to the complexity of the module
 WRITE_MODULE_LIST = ['leads', 'accounts', 'contacts', 'deals', 'campaigns', 'tasks', 'cases', 'events', 'calls',
-                     'solutions', 'products', 'vendors', 'pricebooks', 'purchaseorders', 'custom', 'notes']
+                    'solutions', 'products', 'vendors', 'price_books', 'quotes', 'sales_orders', 'purchase_orders',
+                    'invoices', 'custom', 'notes', 'approvals', 'dashboards', 'search', 'activities', 'attachments']
 
 
 class Client(object):
@@ -108,7 +109,8 @@ class Client(object):
                         'data_type': i['data_type'],
                         'currency': i['currency'],
                         'lookup': i['lookup'],
-                        'pick_list_values': i['pick_list_values']
+                        'pick_list_values': i['pick_list_values'],
+                        'system_mandatory': i['system_mandatory']
                     } for i in response['fields']]
             except Exception as e:
                 print(e)
