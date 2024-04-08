@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "zohocrm-python"
-version = "0.1.6"
+version = "0.1.7"
 description = "API wrapper for ZohoCRM written in Python"
-authors = ["Miguel Ferrer <ingferrermiguel@gmail.com>"]
+authors = ["Gearplug Team <apps@gearplug.io>"]
 license = "MIT"
 readme = "README.md"
 packages = [{include = "zohocrm"}]
